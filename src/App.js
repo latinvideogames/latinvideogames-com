@@ -18,10 +18,9 @@ import {
 } from '@mui/material'
 import gamesData from './data/gamesData.json' // Assuming your JSON data is stored in gamesData.json
 import styled from '@emotion/styled'
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import useColumnCount from './useColumnCount';
-
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
+import useColumnCount from './useColumnCount'
 
 const StyledActionButton = styled(Button)`
   margin-right: 0.5rem;
@@ -30,59 +29,64 @@ const StyledActionButton = styled(Button)`
 
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark',
-  },
-});
+    mode: 'dark'
+  }
+})
 
 const GameList = ({ cols, games }) => {
-  if (!games) return null;
+  if (!games) return null
 
-  const getSubtitle = (game) => {
+  const getSubtitle = game => {
     const arr = []
 
     console.log('')
 
-    
     if (game.hasMultiplayer) arr.push('Multiplayer')
     if (game.hasVRSupport) arr.push('VR')
     if (game.notes) arr.push(game.notes)
 
-    return <>{game.platform}<br/>{arr.join(' | ')}</>
+    return (
+      <>
+        {game.platform}
+        <br />
+        {arr.join(' | ')}
+      </>
+    )
   }
-  
 
   return (
     <ImageList cols={cols}>
-      {games.map((game) => (
-        <ImageListItem key={game.imageURL} cols={game.cols ?? 1} rows={game.rows ?? 1}>
+      {games.map(game => (
+        <ImageListItem
+          key={game.imageURL}
+          cols={game.cols ?? 1}
+          rows={game.rows ?? 1}
+        >
           <img
             srcSet={`${game.imageURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
             src={`${game.imageURL}?w=248&fit=crop&auto=format`}
             alt={game.videoGame}
-            loading="lazy"
+            loading='lazy'
           />
           <ImageListItemBar
-              sx={{
-                background:
-                  'transparent'
-              }}
-              // title={game.videoGame}
-              position="bottom"
-              actionIcon={
-                <div>
-                  {game.installURL && (
+            sx={{
+              background: 'transparent'
+            }}
+            // title={game.videoGame}
+            position='bottom'
+            actionIcon={
+              <div>
+                {game.installURL && (
                   <StyledActionButton
                     size='small'
                     sx={{ color: 'white' }}
-                    color={game.platform === "Web" ? 
-                    "secondary" : "primary"}
-                    variant="contained"
+                    color={game.platform === 'Web' ? 'secondary' : 'primary'}
+                    variant='contained'
                     href={game.installURL}
                     target='_blank'
                     rel='noopener noreferrer'
                   >
-                    {game.platform === "Web" ? 
-                    "Play" : "Download"}
+                    {game.platform === 'Web' ? 'Play' : 'Download'}
                   </StyledActionButton>
                 )}
                 {game.demoURL && (
@@ -99,12 +103,12 @@ const GameList = ({ cols, games }) => {
                   </StyledActionButton>
                 )}
 
-              {game.subtitlesURL && (
+                {game.subtitlesURL && (
                   <StyledActionButton
                     size='small'
                     sx={{ color: 'white' }}
-                    color="success"
-                    variant="contained"
+                    color='success'
+                    variant='contained'
                     href={game.subtitlesURL}
                     target='_blank'
                     rel='noopener noreferrer'
@@ -113,12 +117,12 @@ const GameList = ({ cols, games }) => {
                   </StyledActionButton>
                 )}
 
-              {game.dtInstallURL && (
+                {game.dtInstallURL && (
                   <StyledActionButton
                     size='small'
                     sx={{ color: 'white' }}
-                    color="success"
-                    variant="contained"
+                    color='success'
+                    variant='contained'
                     href={game.dtInstallURL}
                     target='_blank'
                     rel='noopener noreferrer'
@@ -126,7 +130,7 @@ const GameList = ({ cols, games }) => {
                     Download DT's Translation
                   </StyledActionButton>
                 )}
-                
+
                 {game.buyURL && (
                   <StyledActionButton
                     size='small'
@@ -151,16 +155,15 @@ const GameList = ({ cols, games }) => {
                     Contribute
                   </StyledActionButton>
                 )}
-                </div>
-                
-              }
-              actionPosition="right"
-            />
-            <ImageListItemBar
-              title={game.videoGame}
-              subtitle={<span>{getSubtitle(game)}</span>}
-              position="top"
-            />
+              </div>
+            }
+            actionPosition='right'
+          />
+          <ImageListItemBar
+            title={game.videoGame}
+            subtitle={<span>{getSubtitle(game)}</span>}
+            position='top'
+          />
           {/* <ImageListItemBar
             title={item.videoGame}
             subtitle={<span>by: {item.author}</span>}
@@ -169,13 +172,13 @@ const GameList = ({ cols, games }) => {
         </ImageListItem>
       ))}
     </ImageList>
-  );
+  )
 }
 
 function App () {
   const [searchTerm, setSearchTerm] = useState('')
   const [filteredGames, setFilteredGames] = useState(gamesData)
-  const cols = useColumnCount();
+  const cols = useColumnCount()
 
   const handleSearch = event => {
     setSearchTerm(event.target.value)
@@ -189,29 +192,46 @@ function App () {
     }
   }
 
-  return (
-      <ThemeProvider theme={darkTheme}>
-    <div style={{ flexGrow: 1 }}>
-      <CssBaseline />
-      <AppBar position='static'>
-        <Toolbar>
-          <Typography variant='h6' style={{ flexGrow: 1 }}>
-            Latin Video Games
-          </Typography>
-          <Link
-            href='https://discord.gg/ludus'
-            color='inherit'
-            style={{ textDecoration: 'none' }}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <Button color='secondary' variant='contained'>Join the Discord</Button>
-          </Link>
-          {/* <Button color='inherit'>Patreon</Button> */}
-        </Toolbar>
-      </AppBar>
+  // Default
+  const defaultLatinGames = filteredGames.filter(
+    game => !game.isInDevelopment && !game.isPartialLatin && !game.isROM
+  )
+  const partialLatinGames = filteredGames.filter(game => game.isPartialLatin)
+  const romGames = filteredGames.filter(game => game.isROM)
+  const inDevelopmentGames = filteredGames.filter(game => game.isInDevelopment)
+  // const partialLatinGames = filteredGames.filter(game => game.isPartialLatin);
 
-      {/* <Typography
+  // Educational
+  // Partial Latin
+  // ROM
+  // With legality disclaimer
+  // In development
+
+  return (
+    <ThemeProvider theme={darkTheme}>
+      <div style={{ flexGrow: 1 }}>
+        <CssBaseline />
+        <AppBar position='static'>
+          <Toolbar>
+            <Typography variant='h6' style={{ flexGrow: 1 }}>
+              Latin Video Games
+            </Typography>
+            <Link
+              href='https://discord.gg/ludus'
+              color='inherit'
+              style={{ textDecoration: 'none' }}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <Button color='secondary' variant='contained'>
+                Join the Discord
+              </Button>
+            </Link>
+            {/* <Button color='inherit'>Patreon</Button> */}
+          </Toolbar>
+        </AppBar>
+
+        {/* <Typography
         variant='h2'
         style={{
           flexGrow: 1,
@@ -223,108 +243,206 @@ function App () {
         Latin Video Games
       </Typography> */}
 
-    <Typography
-        variant='h3'
-        style={{
-          flexGrow: 1,
-          textAlign: 'center',
-          marginTop: '2rem',
-          // marginBottom: '0rem'
-        }}
-      >
-        Salvē!
-      </Typography>
-      <Typography
-        variant='h6'
-        style={{
-          flexGrow: 1,
-          textAlign: 'center',
-          marginTop: '2rem',
-          // marginBottom: '0rem'
-        }}
-      >
-        This website lists all of the video games I've found online.<br/>
-      </Typography>
-      <Typography
-        variant='h6'
-        color="secondary"
-        style={{
-          flexGrow: 1,
-          textAlign: 'center',
-          marginBottom: '1rem'
-        }}
-      >
-      Disclaimer: These games were not translated by me, and I claim no ownership to them.
-      </Typography>
-      <Typography
-        variant='h5'
-        style={{
-          flexGrow: 1,
-          textAlign: 'center',
-          // marginBottom: '0rem'
-        }}
-      >
-        Want to play a multiplayer latin game?
-      </Typography>
-      <Typography
-        variant='h6'
-        style={{
-          flexGrow: 1,
-          textAlign: 'center',
-          // marginBottom: '0rem'
-        }}
-      >
-        Consider&nbsp;
-        <Link
+        <Typography
+          variant='h3'
+          style={{
+            flexGrow: 1,
+            textAlign: 'center',
+            marginTop: '2rem'
+            // marginBottom: '0rem'
+          }}
+        >
+          Salvē!
+        </Typography>
+        <Typography
+          variant='h6'
+          style={{
+            flexGrow: 1,
+            textAlign: 'center',
+            marginTop: '2rem'
+            // marginBottom: '0rem'
+          }}
+        >
+          This website lists all of the video games I've found online.
+          <br />
+        </Typography>
+        <Typography
+          variant='h6'
+          color='secondary'
+          style={{
+            flexGrow: 1,
+            textAlign: 'center',
+            marginBottom: '1rem'
+          }}
+        >
+          Disclaimer: These games were not translated by me,<br/> and I claim no
+          ownership to them. - Quintus
+        </Typography>
+        <Typography
+          variant='h5'
+          style={{
+            flexGrow: 1,
+            textAlign: 'center'
+            // marginBottom: '0rem'
+          }}
+        >
+          Want to play a multiplayer latin game?
+        </Typography>
+        <Typography
+          variant='h6'
+          style={{
+            flexGrow: 1,
+            textAlign: 'center'
+            // marginBottom: '0rem'
+          }}
+        >
+          Consider&nbsp;
+          <Link
             href='https://discord.gg/ludus'
-            color='inherit'
+            color='secondary'
             style={{ textDecoration: 'none' }}
             target='_blank'
             rel='noopener noreferrer'
           >
-         joining the discord
-        </Link>
-        &nbsp;and looking for players. 🎮
-      </Typography>
-      
+            joining the discord
+          </Link>
+          &nbsp;and looking for players. 🎮
+        </Typography>
+
+        <Grid container justifyContent='center'>
+          <TextField
+            label='Search games'
+            variant='outlined'
+            style={{ margin: 20, minWidth: '20rem' }}
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </Grid>
+
+        <GameList games={defaultLatinGames} cols={cols} />
+
+        {partialLatinGames.length > 0 && (
+          <>
+            <Typography
+              variant='h4'
+              color="secondary"
+              style={{
+                flexGrow: 1,
+                textAlign: 'center',
+                marginTop: '2rem',
+                marginBottom: '0rem'
+              }}
+            >
+              Partial Latin games
+            </Typography>
+            <Typography
+              variant='h6'
+              style={{
+                flexGrow: 1,
+                textAlign: 'center',
+                // marginTop: '2rem',
+                marginBottom: '0rem'
+              }}
+            >
+              English games that also contain Latin
+            </Typography>
+
+            <GameList games={partialLatinGames} cols={cols} />
+          </>
+        )}
 
 
-      <Grid container justifyContent='center'>
-        <TextField
-          label='Search games'
-          variant='outlined'
-          style={{ margin: 20, minWidth: '20rem' }}
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-      </Grid>
+      {romGames.length > 0 && (
+          <>
+            <Typography
+              variant='h4'
+              color="primary"
+              style={{
+                flexGrow: 1,
+                textAlign: 'center',
+                marginTop: '2rem',
+              }}
+            >
+              Latin ROMs
+            </Typography>
+            <Typography
+              variant='h6'
+              style={{
+                flexGrow: 1,
+                textAlign: 'center',
+                // marginTop: '2rem',
+                marginBottom: '0rem'
+              }}
+            >
+              <b>Disclaimer:</b> Links to these games will not be provided,<br/>since the legality and distribution of ROMs is questionable.
+            </Typography>
 
-      <GameList 
-        games={filteredGames.filter(game => !game.isPartialLatin)}
-        cols={cols}
-      />
+            <GameList games={romGames} cols={cols} />
+          </>
+        )}
 
-      {filteredGames.filter(game => game.isPartialLatin).length > 0 && 
-      <Typography
-        variant='h4'
-        style={{
-          flexGrow: 1,
-          textAlign: 'center',
-          marginTop: '2rem',
-          marginBottom: '0rem'
-        }}
-      >
-        English games that also contain Latin
-      </Typography>
-}
+        {inDevelopmentGames.length > 0 && (
+          <>
+            <Typography
+              variant='h4'
+              color="secondary"
+              style={{
+                flexGrow: 1,
+                textAlign: 'center',
+                marginTop: '2rem',
+                marginBottom: '0rem'
+              }}
+            >
+              Latin Games (in development)
+            </Typography>
+            <Typography
+              variant='h6'
+              style={{
+                flexGrow: 1,
+                textAlign: 'center',
+                // marginTop: '2rem',
+                marginBottom: '0rem'
+              }}
+            >
+              Some with quality issues.
+            </Typography>
 
-      <GameList 
-        games={filteredGames.filter(game => game.isPartialLatin)}
-        cols={cols}
-      />
+            <GameList games={inDevelopmentGames} cols={cols} />
+          </>
+        )}
 
-    
-    </div>
+            <Typography
+              variant='h4'
+              color="primary"
+              style={{
+                flexGrow: 1,
+                textAlign: 'center',
+                marginTop: '2rem',
+                marginBottom: '0rem'
+              }}
+            >
+              Do you know a latin game we're missing?
+            </Typography>
+            <Typography
+              variant='h6'
+              style={{
+                flexGrow: 1,
+                textAlign: 'center',
+                // marginTop: '2rem',
+                marginBottom: '3rem'
+              }}
+            >
+              Please share it <Link
+            href='https://discord.gg/ludus'
+            color='secondary'
+            style={{ textDecoration: 'none' }}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            on the discord 🙏
+          </Link>
+            </Typography>
+      </div>
     </ThemeProvider>
   )
 }
