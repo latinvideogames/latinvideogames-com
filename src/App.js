@@ -42,11 +42,12 @@ const GameList = ({ cols, games }) => {
 
     console.log('')
 
+    
     if (game.hasMultiplayer) arr.push('Multiplayer')
     if (game.hasVRSupport) arr.push('VR')
     if (game.notes) arr.push(game.notes)
 
-    return arr.join(' | ')
+    return <>{game.platform}<br/>{arr.join(' | ')}</>
   }
   
 
