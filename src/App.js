@@ -1,25 +1,256 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  CardActions,
+  Button,
+  TextField,
+  Link,
+  CardMedia,
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
+  IconButton
+} from '@mui/material'
+import gamesData from './data/gamesData.json' // Assuming your JSON data is stored in gamesData.json
+import styled from '@emotion/styled'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import useColumnCount from './useColumnCount';
 
-function App() {
+
+const StyledActionButton = styled(Button)`
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+`
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+const GameList = ({ cols, games }) => {
+  if (!games) return null;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ImageList cols={cols}>
+      {games.map((game) => (
+        <ImageListItem key={game.imageURL}>
+          <img
+            srcSet={`${game.imageURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            src={`${game.imageURL}?w=248&fit=crop&auto=format`}
+            alt={game.videoGame}
+            loading="lazy"
+          />
+          <ImageListItemBar
+              sx={{
+                background:
+                  'transparent'
+              }}
+              // title={game.videoGame}
+              position="bottom"
+              actionIcon={
+                <div>
+                  {game.installURL && (
+                  <StyledActionButton
+                    size='small'
+                    sx={{ color: 'white' }}
+                    color={game.platform === "Web" ? 
+                    "secondary" : "primary"}
+                    variant="contained"
+                    href={game.installURL}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    {game.platform === "Web" ? 
+                    "Play" : "Download"}
+                  </StyledActionButton>
+                )}
+                {game.demoURL && (
+                  <StyledActionButton
+                    size='small'
+                    sx={{ color: 'white' }}
+                    color='secondary'
+                    variant='contained'
+                    href={game.demoURL}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    Demo
+                  </StyledActionButton>
+                )}
+
+              {game.subtitlesURL && (
+                  <StyledActionButton
+                    size='small'
+                    sx={{ color: 'white' }}
+                    color="secondary"
+                    variant="contained"
+                    href={game.subtitlesURL}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    Download Subtitles
+                  </StyledActionButton>
+                )}
+                
+                {game.buyURL && (
+                  <StyledActionButton
+                    size='small'
+                    sx={{ color: 'white' }}
+                    color='primary'
+                    href={game.buyURL}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    Buy
+                  </StyledActionButton>
+                )}
+                {game.contributeURL && (
+                  <StyledActionButton
+                    size='small'
+                    sx={{ color: 'white' }}
+                    color='primary'
+                    href={game.contributeURL}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    Contribute
+                  </StyledActionButton>
+                )}
+                </div>
+                
+              }
+              actionPosition="right"
+            />
+            <ImageListItemBar
+              title={game.videoGame}
+              subtitle={<span>
+                {game.notes}
+                  {game.hasMultiplayer && ' Multiplayer'}
+                  {game.hasVRSupport && ' VR Support'}
+              </span>}
+              position="top"
+            />
+          {/* <ImageListItemBar
+            title={item.videoGame}
+            subtitle={<span>by: {item.author}</span>}
+            position="below"
+          /> */}
+        </ImageListItem>
+      ))}
+    </ImageList>
   );
 }
 
-export default App;
+function App () {
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filteredGames, setFilteredGames] = useState(gamesData)
+  const cols = useColumnCount();
+
+  const handleSearch = event => {
+    setSearchTerm(event.target.value)
+    if (event.target.value === '') {
+      setFilteredGames(gamesData)
+    } else {
+      const filteredData = gamesData.filter(game =>
+        game.videoGame.toLowerCase().includes(event.target.value.toLowerCase())
+      )
+      setFilteredGames(filteredData)
+    }
+  }
+
+  return (
+      <ThemeProvider theme={darkTheme}>
+    <div style={{ flexGrow: 1 }}>
+      <CssBaseline />
+      <AppBar position='static'>
+        <Toolbar>
+          <Typography variant='h6' style={{ flexGrow: 1 }}>
+            Latin Video Games
+          </Typography>
+          <Link
+            href='https://discord.gg/ludus'
+            color='inherit'
+            style={{ textDecoration: 'none' }}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <Button color='secondary' variant='contained'>Join the Discord</Button>
+          </Link>
+          {/* <Button color='inherit'>Patreon</Button> */}
+        </Toolbar>
+      </AppBar>
+
+      {/* <Typography
+        variant='h2'
+        style={{
+          flexGrow: 1,
+          textAlign: 'center',
+          marginTop: '2rem',
+          marginBottom: '0rem'
+        }}
+      >
+        Latin Video Games
+      </Typography> */}
+
+      <Typography
+        variant='h5'
+        style={{
+          flexGrow: 1,
+          textAlign: 'center',
+          marginTop: '2rem',
+          marginBottom: '0rem'
+        }}
+      >
+        Salvē!<br/>
+        Have you ever wanted to play a video game in Latin?<br/>
+        If so, check out the games below!
+        
+      </Typography>
+
+      <Grid container justifyContent='center'>
+        <TextField
+          label='Search games'
+          variant='outlined'
+          style={{ margin: 20, minWidth: '30rem' }}
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </Grid>
+
+      <GameList 
+        games={filteredGames.filter(game => !game.isPartialLatin)}
+        cols={cols}
+      />
+
+      {filteredGames.filter(game => game.isPartialLatin).length > 0 && 
+      <Typography
+        variant='h4'
+        style={{
+          flexGrow: 1,
+          textAlign: 'center',
+          marginTop: '2rem',
+          marginBottom: '0rem'
+        }}
+      >
+        English games that also contain Latin
+      </Typography>
+}
+
+      <GameList 
+        games={filteredGames.filter(game => game.isPartialLatin)}
+        cols={cols}
+      />
+
+    
+    </div>
+    </ThemeProvider>
+  )
+}
+
+export default App
