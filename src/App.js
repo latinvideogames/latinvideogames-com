@@ -54,7 +54,7 @@ const GameList = ({ cols, games }) => {
   return (
     <ImageList cols={cols}>
       {games.map((game) => (
-        <ImageListItem key={game.imageURL}>
+        <ImageListItem key={game.imageURL} cols={game.cols ?? 1} rows={game.rows ?? 1}>
           <img
             srcSet={`${game.imageURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
             src={`${game.imageURL}?w=248&fit=crop&auto=format`}
@@ -103,13 +103,27 @@ const GameList = ({ cols, games }) => {
                   <StyledActionButton
                     size='small'
                     sx={{ color: 'white' }}
-                    color="secondary"
+                    color="success"
                     variant="contained"
                     href={game.subtitlesURL}
                     target='_blank'
                     rel='noopener noreferrer'
                   >
                     Download Subtitles
+                  </StyledActionButton>
+                )}
+
+              {game.dtInstallURL && (
+                  <StyledActionButton
+                    size='small'
+                    sx={{ color: 'white' }}
+                    color="success"
+                    variant="contained"
+                    href={game.dtInstallURL}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    Download DT's Translation
                   </StyledActionButton>
                 )}
                 
