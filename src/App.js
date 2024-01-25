@@ -223,26 +223,77 @@ function App () {
         Latin Video Games
       </Typography> */}
 
+    <Typography
+        variant='h3'
+        style={{
+          flexGrow: 1,
+          textAlign: 'center',
+          marginTop: '2rem',
+          // marginBottom: '0rem'
+        }}
+      >
+        Salvē!
+      </Typography>
+      <Typography
+        variant='h6'
+        style={{
+          flexGrow: 1,
+          textAlign: 'center',
+          marginTop: '2rem',
+          // marginBottom: '0rem'
+        }}
+      >
+        This website lists all of the video games I've found online.<br/>
+      </Typography>
+      <Typography
+        variant='h6'
+        color="secondary"
+        style={{
+          flexGrow: 1,
+          textAlign: 'center',
+          marginBottom: '1rem'
+        }}
+      >
+      Disclaimer: These games were not translated by me, and I claim no ownership to them.
+      </Typography>
       <Typography
         variant='h5'
         style={{
           flexGrow: 1,
           textAlign: 'center',
-          marginTop: '2rem',
-          marginBottom: '0rem'
+          // marginBottom: '0rem'
         }}
       >
-        Salvē!<br/>
-        Have you ever wanted to play a video game in Latin?<br/>
-        If so, check out the games below!
-        
+        Want to play a multiplayer latin game?
       </Typography>
+      <Typography
+        variant='h6'
+        style={{
+          flexGrow: 1,
+          textAlign: 'center',
+          // marginBottom: '0rem'
+        }}
+      >
+        Consider&nbsp;
+        <Link
+            href='https://discord.gg/ludus'
+            color='inherit'
+            style={{ textDecoration: 'none' }}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+         joining the discord
+        </Link>
+        &nbsp;and looking for players. 🎮
+      </Typography>
+      
+
 
       <Grid container justifyContent='center'>
         <TextField
           label='Search games'
           variant='outlined'
-          style={{ margin: 20, minWidth: '30rem' }}
+          style={{ margin: 20, minWidth: '20rem' }}
           value={searchTerm}
           onChange={handleSearch}
         />

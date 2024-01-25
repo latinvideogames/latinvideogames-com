@@ -3,7 +3,6 @@
         "videoGame": "Dragon Warrior",
         "demoURL": "",
         "imageURL": "https://s3-external-1.amazonaws.com/romhacking-hacks/translations/nes/images/3766titlescreen.png",
-        "installURL": "https://www.romhacking.net/translations/3766/",
         "contributeURL": "",
         "buyURL": "",
         "hasVRSupport": "",
@@ -16,7 +15,6 @@
     {
         "videoGame": "Dragon Warrior II",
         "demoURL": "",
-        "installURL": "https://www.romhacking.net/translations/4316/",
         "contributeURL": "",
         "imageURL": "https://s3-external-1.amazonaws.com/romhacking-hacks/translations/nes/images/4316titlescreen.png",
         "youtubeURL": "",
@@ -47,7 +45,6 @@
     {
         "videoGame": "Final Fantasy",
         "demoURL": "https://www.youtube.com/watch?v=yWNCOTD98Jo",
-        "installURL": "https://www.romhacking.net/translations/1492/",
         "contributeURL": "",
         "imageURL": "https://s3-external-1.amazonaws.com/romhacking-hacks/translations/nes/images/titles/561titlescreen.png",
         "youtubeURL": "",
@@ -62,7 +59,6 @@
     {
         "videoGame": "Final Fantasy III",
         "demoURL": "",
-        "installURL": "https://www.romhacking.net/translations/1200/",
         "contributeURL": "",
         "imageURL": "https://s3-external-1.amazonaws.com/romhacking-hacks/translations/snes/images/titles/302titlescreen.png",
         "youtubeURL": "",
@@ -185,7 +181,6 @@
     {
         "videoGame": "The Battle of Olympus",
         "demoURL": "",
-        "installURL": "https://www.romhacking.net/translations/3498/",
         "contributeURL": "",
         "imageURL": "https://s3-external-1.amazonaws.com/romhacking-hacks/translations/nes/images/3498titlescreen.png",
         "youtubeURL": "",
@@ -216,7 +211,6 @@
     {
         "videoGame": "The Legend of Zelda",
         "demoURL": "",
-        "installURL": "https://www.romhacking.net/translations/1199/",
         "contributeURL": "",
         "imageURL": "https://s3-external-1.amazonaws.com/romhacking-hacks/translations/nes/images/1199titlescreen.png",
         "youtubeURL": "",
@@ -231,7 +225,6 @@
     {
         "videoGame": "The Legend of Zelda: Ocarina of Time",
         "demoURL": "",
-        "installURL": "https://www.romhacking.net/translations/7152/",
         "contributeURL": "",
         "imageURL": "https://s3-external-1.amazonaws.com/romhacking-hacks/translations/n64/images/7152titlescreen.jpg",
         "youtubeURL": "",
@@ -246,7 +239,6 @@
     {
         "videoGame": "Super Mario Bros.",
         "demoURL": "",
-        "installURL": "https://www.romhacking.net/translations/6959/",
         "contributeURL": "",
         "imageURL": "https://s3-external-1.amazonaws.com/romhacking-hacks/translations/nes/images/6959titlescreen.png",
         "youtubeURL": "",
@@ -261,7 +253,6 @@
     {
         "videoGame": "Zelda II: The Adventure of Link",
         "demoURL": "",
-        "installURL": "https://www.romhacking.net/translations/1366/",
         "contributeURL": "",
         "imageURL": "https://s3-external-1.amazonaws.com/romhacking-hacks/translations/nes/images/1366titlescreen.png",
         "youtubeURL": "",
