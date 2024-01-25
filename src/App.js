@@ -36,6 +36,20 @@ const darkTheme = createTheme({
 
 const GameList = ({ cols, games }) => {
   if (!games) return null;
+
+  const getSubtitle = (game) => {
+    const arr = []
+
+    console.log('')
+
+    if (game.hasMultiplayer) arr.push('Multiplayer')
+    if (game.hasVRSupport) arr.push('VR')
+    if (game.notes) arr.push(game.notes)
+
+    return arr.join(' | ')
+  }
+  
+
   return (
     <ImageList cols={cols}>
       {games.map((game) => (
@@ -129,11 +143,7 @@ const GameList = ({ cols, games }) => {
             />
             <ImageListItemBar
               title={game.videoGame}
-              subtitle={<span>
-                {game.notes}
-                  {game.hasMultiplayer && ' Multiplayer'}
-                  {game.hasVRSupport && ' VR Support'}
-              </span>}
+              subtitle={<span>{getSubtitle(game)}</span>}
               position="top"
             />
           {/* <ImageListItemBar
