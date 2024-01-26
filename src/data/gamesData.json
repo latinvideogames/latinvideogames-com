@@ -11,7 +11,8 @@
         "price": "Free",
         "platform": "NES ROM",
         "notes": "",
-        "isROM": true
+        "isROM": true,
+        "author": "abw"
     },
     {
         "videoGame": "Dragon Warrior II",
@@ -26,7 +27,8 @@
         "price": "Free",
         "platform": "NES ROM",
         "isROM": true,
-        "notes": ""
+        "notes": "",
+        "author": "abw"
     },
     {
         "videoGame": "Evolution of Trust",
@@ -41,8 +43,9 @@
         "hasMultiplayer": "",
         "price": "Free",
         "platform": "Web",
-        "notes": "(In development, started Jan 2024)",
-        "isInDevelopment": true
+        "notes": "Created 01/24",
+        "isInDevelopment": true,
+        "author": "Michaele Ditio (DT)"
     },
     {
         "videoGame": "Final Fantasy",
@@ -57,7 +60,8 @@
         "price": "Free",
         "platform": "NES ROM",
         "isROM": true,
-        "notes": ""
+        "notes": "",
+        "author": "abw"
     },
     {
         "videoGame": "Final Fantasy III",
@@ -72,23 +76,8 @@
         "price": "Free",
         "platform": "SNES ROM",
         "isROM": true,
-        "notes": "VI in Japan"
-    },
-    {
-        "videoGame": "Hollow Knight",
-        "demoURL": "",
-        "installURL": "https://discord.com/channels/1182150638587629618/1191040775765631026/1191090507233906699",
-        "contributeURL": "",
-        "imageURL": "https://i.imgur.com/UCvTYZp.png",
-        "youtubeURL": "",
-        "buyURL": "",
-        "hasVRSupport": "",
-        "lainQuality": "",
-        "hasMultiplayer": "",
-        "price": "",
-        "platform": "Steam",
-        "notes": "",
-        "isInDevelopment": true
+        "notes": "VI in Japan",
+        "author": "abw"
     },
     {
         "videoGame": "Hotline Miami",
@@ -103,7 +92,8 @@
         "hasMultiplayer": "",
         "price": "~$9.99",
         "platform": "Steam",
-        "notes": ""
+        "notes": "",
+        "author": "SineTimore"
     },
     {
         "videoGame": "Influent",
@@ -118,7 +108,8 @@
         "hasMultiplayer": "",
         "price": "",
         "platform": "Steam, iOS, & android",
-        "notes": ""
+        "notes": "",
+        "author": "Three Flip Studios"
     },
     {
         "videoGame": "Lethal Company",
@@ -133,16 +124,28 @@
         "hasMultiplayer": "Yes",
         "price": "",
         "platform": "Steam",
-        "notes": "(In development, started Dec 2023)",
-        "isInDevelopment": true
+        "notes": "Created 12/23. Replacing CHAT GPT translations.",
+        "isInDevelopment": true,
+        "author": "Chat GPT / Quintus"
     },
     {
         "videoGame": "Minecraft",
         "demoURL": "https://www.youtube.com/watch?v=RfXdsDQJIlc",
         "imageURL": "https://i.redd.it/3w2h4aeykga31.jpg",
         "installURL": "https://www.minecraft.net/en-us/download",
-        "dtInstallURL": "https://discord.com/channels/1182150638587629618/1191040873090252800/1191055749598683258",
-        "platform": "Windows & Mac"
+        "platform": "Windows & Mac",
+        "author": "Mojang/Microsoft",
+        "notes": "Minecraft includes latin in the settings."
+    },
+    {
+        "videoGame": "Minecraft (DT's translation)",
+        "demoURL": "https://www.youtube.com/watch?v=RfXdsDQJIlc",
+        "imageURL": "https://i.redd.it/3w2h4aeykga31.jpg",
+        "installURL": "https://discord.com/channels/1182150638587629618/1191040873090252800/1191055749598683258",
+        "platform": "Windows & Mac",
+        "author": "Michaele Ditio (DT)",
+        "notes": "DT's translation aims to use better latin."
+
     },
     {
         "videoGame": "Nicolas Eymerich - The Inquisitor - Book 1 : The Plague",
@@ -157,7 +160,8 @@
         "hasMultiplayer": "",
         "price": "",
         "platform": "Steam",
-        "notes": ""
+        "notes": "",
+        "author": "Ticonblu"
     },
     {
         "videoGame": "Skyrim",
@@ -165,16 +169,17 @@
         "imageURL": "https://staticdelivery.nexusmods.com/mods/1704/images/27433/27433-1563321506-433097667.jpeg",
         "installURL": "https://www.nexusmods.com/skyrimspecialedition/mods/27433",
         "notes": "A separate mod adds latin subtitles",
-        "platform": "Steam"
+        "platform": "Steam",
+        "author": "zarc70"
     },
     {
         "videoGame": "Skyrim - Subtitles (Chat GPT)",
         "demoURL": "https://www.youtube.com/shorts/9JvmoOjcfa8",
         "imageURL": "https://staticdelivery.nexusmods.com/mods/1704/images/27433/27433-1563321506-433097667.jpeg",
         "installURL": "https://www.nexusmods.com/skyrimspecialedition/mods/93928",
-        "notes": "A separate mod adds latin subtitles",
         "platform": "Steam",
-        "isInDevelopment": true
+        "isInDevelopment": true,
+        "author": "Chat GPT / Quintus"
     },
     {
         "videoGame": "Textorcist",
@@ -190,7 +195,8 @@
         "price": "14.99",
         "platform": "Steam",
         "notes": "",
-        "isPartialLatin": true
+        "isPartialLatin": true,
+        "author": "MorbidWare"
     },
     {
         "videoGame": "The Battle of Olympus",
@@ -205,7 +211,8 @@
         "price": "Free",
         "platform": "NES ROM",
         "isROM": true,
-        "notes": ""
+        "notes": "",
+        "author": "abw"
     },
     {
         "videoGame": "The Forgotten City",
@@ -221,7 +228,8 @@
         "price": "~$24.99",
         "platform": "Steam",
         "notes": "",
-        "isPartialLatin": true
+        "isPartialLatin": true,
+        "author": "Modern Storyteller"
     },
     {
         "videoGame": "The Legend of Zelda",
@@ -236,7 +244,8 @@
         "price": "Free",
         "platform": "NES ROM",
         "isROM": true,
-        "notes": ""
+        "notes": "",
+        "author": "abw"
     },
     {
         "videoGame": "The Legend of Zelda: Ocarina of Time",
@@ -251,7 +260,8 @@
         "price": "Free",
         "platform": "N64 ROM",
         "isROM": true,
-        "notes": ""
+        "notes": "",
+        "author": "LenCabral"
     },
     {
         "videoGame": "Super Mario Bros.",
@@ -266,7 +276,53 @@
         "price": "Free",
         "platform": "NES ROM",
         "isROM": true,
-        "notes": ""
+        "notes": "",
+        "author": "OEA"
+    },
+    {
+        "videoGame": "Scrabble",
+        "demoURL": "",
+        "installURL": "https://latinvocabularytester.com/scrabble/",
+        "imageURL": "https://latinvocabularytester.com/assets/screenshots/scrabble.png",
+        "contributeURL": "",
+        "buyURL": "",
+        "hasVRSupport": "",
+        "lainQuality": "",
+        "hasMultiplayer": "",
+        "price": "Free",
+        "platform": "Web",
+        "notes": "Combine tiles to form latin words.",
+        "author": "latinvocabularytester.com"
+    },
+    {
+        "videoGame": "WORD BITES",
+        "demoURL": "",
+        "installURL": "https://latinvocabularytester.com/word-bites/",
+        "imageURL": "https://latinvocabularytester.com/assets/screenshots/word-bites.png",
+        "contributeURL": "",
+        "buyURL": "",
+        "hasVRSupport": "",
+        "lainQuality": "",
+        "hasMultiplayer": "",
+        "price": "Free",
+        "platform": "Web",
+        "notes": "Combine tiles to form latin words.",
+        "author": "latinvocabularytester.com"
+    },
+    {
+        "videoGame": "Wordle - DICTUM",
+        "demoURL": "",
+        "installURL": "https://latinvocabularytester.com/dictum/",
+        "imageURL": "https://latinvocabularytester.com/assets/screenshots/wordle.png",
+        "contributeURL": "",
+        "buyURL": "",
+        "hasVRSupport": "",
+        "lainQuality": "",
+        "hasMultiplayer": "",
+        "price": "Free",
+        "platform": "Web",
+        "notes": "Latin Wordle",
+        "author": "latinvocabularytester.com"
     },
     {
         "videoGame": "Zelda II: The Adventure of Link",
@@ -279,6 +335,8 @@
         "lainQuality": "",
         "hasMultiplayer": "",
         "price": "Free",
-        "platform": "NES ROM"
+        "platform": "NES ROM",
+        "isROM": true,
+        "author": "abw"
     }
 ]

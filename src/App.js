@@ -16,6 +16,8 @@ import {
   ImageListItemBar,
   IconButton
 } from '@mui/material'
+
+import { Play } from 'react-feather';
 import gamesData from './data/gamesData.json' // Assuming your JSON data is stored in gamesData.json
 import styled from '@emotion/styled'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
@@ -47,9 +49,9 @@ const GameList = ({ cols, games }) => {
 
     return (
       <>
+        {game.author && <Typography color="primary" as="div" style={{ marginBottom: '0.25rem', fontSize: '1rem' }}>By {game.author}</Typography>}
         {game.platform}
-        <br />
-        {arr.join(' | ')}
+        {arr.length > 0 && <>&nbsp;| {arr.join(' | ')}</>}
       </>
     )
   }
@@ -78,15 +80,16 @@ const GameList = ({ cols, games }) => {
               <div>
                 {game.installURL && (
                   <StyledActionButton
+                  
                     size='small'
                     sx={{ color: 'white' }}
-                    color={game.platform === 'Web' ? 'secondary' : 'primary'}
+                    color={game.platform === 'Web' ? 'success' : 'primary'}
                     variant='contained'
                     href={game.installURL}
                     target='_blank'
                     rel='noopener noreferrer'
                   >
-                    {game.platform === 'Web' ? 'Play' : 'Download'}
+                    {game.platform === 'Web' ?  "Play" : 'Download'}
                   </StyledActionButton>
                 )}
                 {game.demoURL && (
@@ -103,25 +106,13 @@ const GameList = ({ cols, games }) => {
                   </StyledActionButton>
                 )}
 
-                {game.subtitlesURL && (
-                  <StyledActionButton
-                    size='small'
-                    sx={{ color: 'white' }}
-                    color='success'
-                    variant='contained'
-                    href={game.subtitlesURL}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    Download Subtitles
-                  </StyledActionButton>
-                )}
+            
 
                 {game.dtInstallURL && (
                   <StyledActionButton
                     size='small'
                     sx={{ color: 'white' }}
-                    color='success'
+                    color='warning'
                     variant='contained'
                     href={game.dtInstallURL}
                     target='_blank'
@@ -263,12 +254,12 @@ function App () {
             // marginBottom: '0rem'
           }}
         >
-          This website lists all of the video games I've found online.
+          These are the latin language video games I've found online.
           <br />
         </Typography>
         <Typography
           variant='h6'
-          color='secondary'
+          color='yellow'
           style={{
             flexGrow: 1,
             textAlign: 'center',
@@ -318,6 +309,15 @@ function App () {
             onChange={handleSearch}
           />
         </Grid>
+          <Grid container justifyContent="center">
+          <h6>Filters</h6>
+          </Grid>
+          <Grid container justifyContent="center">
+            <Button>Translated by Discord Users</Button>
+            <select>
+              <option>All Platforms</option>
+            </select>
+          </Grid>
 
         <GameList games={defaultLatinGames} cols={cols} />
 
@@ -374,7 +374,23 @@ function App () {
                 marginBottom: '0rem'
               }}
             >
-              <b>Disclaimer:</b> Links to these games will not be provided,<br/>since the legality and distribution of ROMs is questionable.
+              <b>Disclaimer:</b> Links to ROMs will not be provided<br/>
+              For more info, here is a 
+              <Link
+            href='https://en.wikipedia.org/wiki/Video_game_console_emulator#Legal_issues'
+            color='primary'
+            style={{ textDecoration: 'none' }}
+            target='_blank'
+            rel='noopener noreferrer'
+          > relevant wiki </Link>
+              and a 
+              <Link
+            href='https://www.youtube.com/watch?v=jISrg3V9ubo'
+            color='primary'
+            style={{ textDecoration: 'none' }}
+            target='_blank'
+            rel='noopener noreferrer'
+          > video discussing the legality of ROMs.</Link>
             </Typography>
 
             <GameList games={romGames} cols={cols} />
@@ -421,7 +437,7 @@ function App () {
                 marginBottom: '0rem'
               }}
             >
-              Do you know a latin game we're missing?
+              Do you know a latin game that isn't included?
             </Typography>
             <Typography
               variant='h6'
