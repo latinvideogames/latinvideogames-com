@@ -177,6 +177,8 @@ const GameList = ({ cols, games }) => {
 
 const ALL_PLATFORMS = 'All platforms'
 
+gamesData.sort((a,b) => (a.videoGame > b.videoGame) ? 1 : ((b.videoGame > a.videoGame) ? -1 : 0))
+
 function App () {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchFilteredGames, setFilteredGames] = useState(gamesData)
@@ -184,6 +186,7 @@ function App () {
   const [isTranslatedByDiscord, setIsTranslatedByDiscord] = useState(false)
   const [isMultiplayer, setIsMultiplayer] = useState(false)
   const [hasVRSupport, setHasVRSupport] = useState(false)
+  const [isFree, setIsFree] = useState(false)
   const platforms = [
     { name: ALL_PLATFORMS, id: 0 },
     { name: 'Web', id: 1 },
@@ -221,6 +224,9 @@ function App () {
   filteredGames = filteredGames.filter(
     game => !hasVRSupport || game.hasVRSupport
   )
+  filteredGames = filteredGames.filter(
+    game => !isFree || (game.price === "Free" && !game.isROM)
+  )
   filteredGames = filteredGames.filter(game => platformId === 0 || game.platform === platforms[platformId].name)
 
 
@@ -242,6 +248,7 @@ function App () {
   const discordButtonProp = createButtonProp(isTranslatedByDiscord)
   const multiplayerButtonProp = createButtonProp(isMultiplayer)
   const vrSupportButtonProp = createButtonProp(hasVRSupport)
+  const freeButtonProp = createButtonProp(isFree)
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -401,7 +408,8 @@ function App () {
             {...multiplayerButtonProp}
             onClick={() => setIsMultiplayer(!isMultiplayer)}
           >
-            Show<br/>Multiplayer
+            Show Multiplayer<br/>
+            Games
           </Button>
 
           <Button
@@ -410,6 +418,15 @@ function App () {
             onClick={() => setHasVRSupport(!hasVRSupport)}
           >
             Show VR<br/>Games
+
+          </Button>
+
+          <Button
+            color='warning'
+            {...freeButtonProp}
+            onClick={() => setIsFree(!isFree)}
+          >
+            Show<br/>Free
 
           </Button>
 

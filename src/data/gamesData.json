@@ -1,5 +1,20 @@
 [
     {
+        "videoGame": "Battle for Wesnoth",
+        "demoURL": "",
+        "imageURL": "https://i.imgur.com/iwlgejE.png",
+        "contributeURL": "",
+        "buyURL": "",
+        "hasVRSupport": "",
+        "installURL": "https://store.steampowered.com/app/599390/Battle_for_Wesnoth/",
+        "lainQuality": "",
+        "hasMultiplayer": "",
+        "price": "Free",
+        "platform": "Steam",
+        "notes": "",
+        "author": "The Battle for Wesnoth Project"
+    },
+    {
         "videoGame": "Dragon Warrior",
         "demoURL": "",
         "imageURL": "https://s3-external-1.amazonaws.com/romhacking-hacks/translations/nes/images/3766titlescreen.png",
@@ -79,6 +94,22 @@
         "isROM": true,
         "notes": "VI in Japan",
         "author": "abw"
+    },
+    {
+        "videoGame": "Grammaticus Maximus - Latin",
+        "demoURL": "https://www.reddit.com/r/latin/comments/19fenwm/grammaticus_maximus_110_triumphal_arch_update/",
+        "installURL": "https://apps.apple.com/ca/app/grammaticus-maximus-latin/id1611073700",
+        "contributeURL": "",
+        "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/a7/64/94/a764940a-f0d3-9ca4-035d-e65fc24f03c3/dd69ac3b-bf1e-4a9c-93b3-6c5a0c97ac26_Screenshot2_EN.png/217x0w.webp",
+        "youtubeURL": "",
+        "buyURL": "",
+        "hasVRSupport": "",
+        "lainQuality": "",
+        "hasMultiplayer": "",
+        "price": "Free",
+        "platform": "iOS & android",
+        "notes": "",
+        "author": "Jochum van Weert"
     },
     {
         "videoGame": "Hotline Miami",
@@ -169,6 +200,22 @@
         "author": "Ticonblu"
     },
     {
+        "videoGame": "OpenTTD",
+        "demoURL": "",
+        "installURL": "https://store.steampowered.com/app/1536610/OpenTTD/",
+        "contributeURL": "",
+        "imageURL": "https://i.imgur.com/VM98zaC.png",
+        "youtubeURL": "",
+        "buyURL": "",
+        "hasVRSupport": "",
+        "lainQuality": "",
+        "hasMultiplayer": "",
+        "price": "Free",
+        "platform": "Steam",
+        "notes": "",
+        "author": "OpenTTD"
+    },
+    {
         "videoGame": "Skyrim",
         "demoURL": "https://www.youtube.com/shorts/9JvmoOjcfa8",
         "imageURL": "https://staticdelivery.nexusmods.com/mods/1704/images/27433/27433-1563321506-433097667.jpeg",
@@ -188,6 +235,37 @@
         "author": "Chat GPT / Quintus",
         "isTranslatedByDiscordUser": true,
         "hasVRSupport": true
+    },
+    {
+        "videoGame": "Super Mario Bros.",
+        "demoURL": "",
+        "contributeURL": "",
+        "imageURL": "https://s3-external-1.amazonaws.com/romhacking-hacks/translations/nes/images/6959titlescreen.png",
+        "youtubeURL": "",
+        "buyURL": "",
+        "hasVRSupport": "",
+        "lainQuality": "",
+        "hasMultiplayer": "",
+        "price": "Free",
+        "platform": "NES ROM",
+        "isROM": true,
+        "notes": "",
+        "author": "OEA"
+    },
+    {
+        "videoGame": "Scrabble",
+        "demoURL": "",
+        "installURL": "https://latinvocabularytester.com/scrabble/",
+        "imageURL": "https://latinvocabularytester.com/assets/screenshots/scrabble.png",
+        "contributeURL": "",
+        "buyURL": "",
+        "hasVRSupport": "",
+        "lainQuality": "",
+        "hasMultiplayer": "",
+        "price": "Free",
+        "platform": "Web",
+        "notes": "Combine tiles to form latin words.",
+        "author": "latinvocabularytester.com"
     },
     {
         "videoGame": "Textorcist",
@@ -271,37 +349,7 @@
         "notes": "",
         "author": "LenCabral"
     },
-    {
-        "videoGame": "Super Mario Bros.",
-        "demoURL": "",
-        "contributeURL": "",
-        "imageURL": "https://s3-external-1.amazonaws.com/romhacking-hacks/translations/nes/images/6959titlescreen.png",
-        "youtubeURL": "",
-        "buyURL": "",
-        "hasVRSupport": "",
-        "lainQuality": "",
-        "hasMultiplayer": "",
-        "price": "Free",
-        "platform": "NES ROM",
-        "isROM": true,
-        "notes": "",
-        "author": "OEA"
-    },
-    {
-        "videoGame": "Scrabble",
-        "demoURL": "",
-        "installURL": "https://latinvocabularytester.com/scrabble/",
-        "imageURL": "https://latinvocabularytester.com/assets/screenshots/scrabble.png",
-        "contributeURL": "",
-        "buyURL": "",
-        "hasVRSupport": "",
-        "lainQuality": "",
-        "hasMultiplayer": "",
-        "price": "Free",
-        "platform": "Web",
-        "notes": "Combine tiles to form latin words.",
-        "author": "latinvocabularytester.com"
-    },
+    
     {
         "videoGame": "WORD BITES",
         "demoURL": "",
