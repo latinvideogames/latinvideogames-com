@@ -45,7 +45,8 @@
         "platform": "Web",
         "notes": "Created 01/24",
         "isInDevelopment": true,
-        "author": "Michaele Ditio (DT)"
+        "author": "Michaele Ditio (DT)",
+        "isTranslatedByDiscordUser": true
     },
     {
         "videoGame": "Final Fantasy",
@@ -126,7 +127,8 @@
         "platform": "Steam",
         "notes": "Created 12/23. Replacing CHAT GPT translations.",
         "isInDevelopment": true,
-        "author": "Chat GPT / Quintus"
+        "author": "Chat GPT / Quintus",
+        "isTranslatedByDiscordUser": true
     },
     {
         "videoGame": "Minecraft",
@@ -135,7 +137,8 @@
         "installURL": "https://www.minecraft.net/en-us/download",
         "platform": "Windows & Mac",
         "author": "Mojang/Microsoft",
-        "notes": "Minecraft includes latin in the settings."
+        "notes": "Minecraft includes latin in the settings.",
+        "hasMultiplayer": true
     },
     {
         "videoGame": "Minecraft (DT's translation)",
@@ -144,7 +147,9 @@
         "installURL": "https://discord.com/channels/1182150638587629618/1191040873090252800/1191055749598683258",
         "platform": "Windows & Mac",
         "author": "Michaele Ditio (DT)",
-        "notes": "DT's translation aims to use better latin."
+        "notes": "DT's translation aims to use better latin.",
+        "isTranslatedByDiscordUser": true,
+        "hasMultiplayer": true
 
     },
     {
@@ -170,7 +175,8 @@
         "installURL": "https://www.nexusmods.com/skyrimspecialedition/mods/27433",
         "notes": "A separate mod adds latin subtitles",
         "platform": "Steam",
-        "author": "zarc70"
+        "author": "zarc70",
+        "hasVRSupport": true
     },
     {
         "videoGame": "Skyrim - Subtitles (Chat GPT)",
@@ -179,7 +185,9 @@
         "installURL": "https://www.nexusmods.com/skyrimspecialedition/mods/93928",
         "platform": "Steam",
         "isInDevelopment": true,
-        "author": "Chat GPT / Quintus"
+        "author": "Chat GPT / Quintus",
+        "isTranslatedByDiscordUser": true,
+        "hasVRSupport": true
     },
     {
         "videoGame": "Textorcist",

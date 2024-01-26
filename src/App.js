@@ -16,8 +16,12 @@ import {
   ImageListItemBar,
   IconButton
 } from '@mui/material'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
 
-import { Play } from 'react-feather';
+import { Play } from 'react-feather'
 import gamesData from './data/gamesData.json' // Assuming your JSON data is stored in gamesData.json
 import styled from '@emotion/styled'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
@@ -49,7 +53,15 @@ const GameList = ({ cols, games }) => {
 
     return (
       <>
-        {game.author && <Typography color="primary" as="div" style={{ marginBottom: '0.25rem', fontSize: '1rem' }}>By {game.author}</Typography>}
+        {game.author && (
+          <Typography
+            color='primary'
+            as='div'
+            style={{ marginBottom: '0.25rem', fontSize: '1rem' }}
+          >
+            By {game.author}
+          </Typography>
+        )}
         {game.platform}
         {arr.length > 0 && <>&nbsp;| {arr.join(' | ')}</>}
       </>
@@ -60,7 +72,7 @@ const GameList = ({ cols, games }) => {
     <ImageList cols={cols}>
       {games.map(game => (
         <ImageListItem
-          key={game.imageURL}
+          key={game.videoGame}
           cols={game.cols ?? 1}
           rows={game.rows ?? 1}
         >
@@ -80,7 +92,6 @@ const GameList = ({ cols, games }) => {
               <div>
                 {game.installURL && (
                   <StyledActionButton
-                  
                     size='small'
                     sx={{ color: 'white' }}
                     color={game.platform === 'Web' ? 'success' : 'primary'}
@@ -89,7 +100,7 @@ const GameList = ({ cols, games }) => {
                     target='_blank'
                     rel='noopener noreferrer'
                   >
-                    {game.platform === 'Web' ?  "Play" : 'Download'}
+                    {game.platform === 'Web' ? 'Play' : 'Download'}
                   </StyledActionButton>
                 )}
                 {game.demoURL && (
@@ -105,8 +116,6 @@ const GameList = ({ cols, games }) => {
                     Demo
                   </StyledActionButton>
                 )}
-
-            
 
                 {game.dtInstallURL && (
                   <StyledActionButton
@@ -166,13 +175,32 @@ const GameList = ({ cols, games }) => {
   )
 }
 
+const ALL_PLATFORMS = 'All platforms'
+
 function App () {
   const [searchTerm, setSearchTerm] = useState('')
-  const [filteredGames, setFilteredGames] = useState(gamesData)
+  const [searchFilteredGames, setFilteredGames] = useState(gamesData)
   const cols = useColumnCount()
+  const [isTranslatedByDiscord, setIsTranslatedByDiscord] = useState(false)
+  const [isMultiplayer, setIsMultiplayer] = useState(false)
+  const [hasVRSupport, setHasVRSupport] = useState(false)
+  const platforms = [
+    { name: ALL_PLATFORMS, id: 0 },
+    { name: 'Web', id: 1 },
+    { name: 'Steam', id: 2 },
+    { name: 'Steam, iOS, & android', id: 3 },
+    { name: 'Windows & Mac', id: 4 },
+    { name: 'NES ROM', id: 5 },
+    { name: 'SNES ROM', id: 6 },
+    { name: 'N64 ROM', id: 7 }
+  ]
+  const [platformId, setPlatformId] = useState(0)
+  // platforms.unshift(ALL_PLATFORMS)
 
   const handleSearch = event => {
     setSearchTerm(event.target.value)
+    
+    
     if (event.target.value === '') {
       setFilteredGames(gamesData)
     } else {
@@ -182,6 +210,19 @@ function App () {
       setFilteredGames(filteredData)
     }
   }
+
+  let filteredGames = [...searchFilteredGames]
+  filteredGames = filteredGames.filter(
+    game => !isTranslatedByDiscord || game.isTranslatedByDiscordUser
+  )
+  filteredGames = filteredGames.filter(
+    game => !isMultiplayer || game.hasMultiplayer
+  )
+  filteredGames = filteredGames.filter(
+    game => !hasVRSupport || game.hasVRSupport
+  )
+  filteredGames = filteredGames.filter(game => platformId === 0 || game.platform === platforms[platformId].name)
+
 
   // Default
   const defaultLatinGames = filteredGames.filter(
@@ -197,6 +238,10 @@ function App () {
   // ROM
   // With legality disclaimer
   // In development
+
+  const discordButtonProp = createButtonProp(isTranslatedByDiscord)
+  const multiplayerButtonProp = createButtonProp(isMultiplayer)
+  const vrSupportButtonProp = createButtonProp(hasVRSupport)
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -266,8 +311,8 @@ function App () {
             marginBottom: '1rem'
           }}
         >
-          Disclaimer: These games were not translated by me,<br/> and I claim no
-          ownership to them. - Quintus
+          Disclaimer: These games were not translated by me,
+          <br /> and I claim no ownership to them. - Quintus
         </Typography>
         <Typography
           variant='h5'
@@ -308,16 +353,68 @@ function App () {
             value={searchTerm}
             onChange={handleSearch}
           />
+
+<FormControl sx={{ m: 2.5, minWidth: 80 }}>
+            <InputLabel id='demo-simple-select-autowidth-label'>
+              Platforms
+            </InputLabel>
+            <Select
+              labelId='demo-simple-select-autowidth-label'
+              id='demo-simple-select-autowidth'
+              value={platformId}
+              onChange={e => {
+                setPlatformId(e.target.value)
+              }}
+              autoWidth
+              label='Platform'
+            >
+              {platforms.map((p, i) => <MenuItem value={p.id}>{p.name}</MenuItem>)}
+           
+            </Select>
+          </FormControl>
         </Grid>
-          <Grid container justifyContent="center">
-          <h6>Filters</h6>
-          </Grid>
-          <Grid container justifyContent="center">
-            <Button>Translated by Discord Users</Button>
-            <select>
-              <option>All Platforms</option>
-            </select>
-          </Grid>
+
+
+        <Typography
+              variant='h5'
+              style={{
+                flexGrow: 1,
+                textAlign: 'center',
+                marginTop: '0.5rem',
+                marginBottom: '0.5rem'
+              }}
+            >
+              Filters
+            </Typography>
+
+        <Grid container justifyContent='center'>
+          <Button
+            color='primary'
+            {...discordButtonProp}
+            onClick={() => setIsTranslatedByDiscord(!isTranslatedByDiscord)}
+          >
+            Show Games Created<br/>by Discord Translators
+          </Button>
+
+          <Button
+            color='secondary'
+            {...multiplayerButtonProp}
+            onClick={() => setIsMultiplayer(!isMultiplayer)}
+          >
+            Show<br/>Multiplayer
+          </Button>
+
+          <Button
+            color='success'
+            {...vrSupportButtonProp}
+            onClick={() => setHasVRSupport(!hasVRSupport)}
+          >
+            Show VR<br/>Games
+
+          </Button>
+
+          
+        </Grid>
 
         <GameList games={defaultLatinGames} cols={cols} />
 
@@ -325,7 +422,7 @@ function App () {
           <>
             <Typography
               variant='h4'
-              color="secondary"
+              color='secondary'
               style={{
                 flexGrow: 1,
                 textAlign: 'center',
@@ -351,16 +448,15 @@ function App () {
           </>
         )}
 
-
-      {romGames.length > 0 && (
+        {romGames.length > 0 && (
           <>
             <Typography
               variant='h4'
-              color="primary"
+              color='primary'
               style={{
                 flexGrow: 1,
                 textAlign: 'center',
-                marginTop: '2rem',
+                marginTop: '2rem'
               }}
             >
               Latin ROMs
@@ -374,23 +470,30 @@ function App () {
                 marginBottom: '0rem'
               }}
             >
-              <b>Disclaimer:</b> Links to ROMs will not be provided<br/>
-              For more info, here is a 
+              <b>Disclaimer:</b> Links to ROMs will not be provided
+              <br />
+              For more info, here is a
               <Link
-            href='https://en.wikipedia.org/wiki/Video_game_console_emulator#Legal_issues'
-            color='primary'
-            style={{ textDecoration: 'none' }}
-            target='_blank'
-            rel='noopener noreferrer'
-          > relevant wiki </Link>
-              and a 
+                href='https://en.wikipedia.org/wiki/Video_game_console_emulator#Legal_issues'
+                color='primary'
+                style={{ textDecoration: 'none' }}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {' '}
+                relevant wiki{' '}
+              </Link>
+              and a
               <Link
-            href='https://www.youtube.com/watch?v=jISrg3V9ubo'
-            color='primary'
-            style={{ textDecoration: 'none' }}
-            target='_blank'
-            rel='noopener noreferrer'
-          > video discussing the legality of ROMs.</Link>
+                href='https://www.youtube.com/watch?v=jISrg3V9ubo'
+                color='primary'
+                style={{ textDecoration: 'none' }}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {' '}
+                video discussing the legality of ROMs.
+              </Link>
             </Typography>
 
             <GameList games={romGames} cols={cols} />
@@ -401,7 +504,7 @@ function App () {
           <>
             <Typography
               variant='h4'
-              color="secondary"
+              color='secondary'
               style={{
                 flexGrow: 1,
                 textAlign: 'center',
@@ -427,28 +530,29 @@ function App () {
           </>
         )}
 
-            <Typography
-              variant='h4'
-              color="primary"
-              style={{
-                flexGrow: 1,
-                textAlign: 'center',
-                marginTop: '2rem',
-                marginBottom: '0rem'
-              }}
-            >
-              Do you know a latin game that isn't included?
-            </Typography>
-            <Typography
-              variant='h6'
-              style={{
-                flexGrow: 1,
-                textAlign: 'center',
-                // marginTop: '2rem',
-                marginBottom: '3rem'
-              }}
-            >
-              Please share it <Link
+        <Typography
+          variant='h4'
+          color='primary'
+          style={{
+            flexGrow: 1,
+            textAlign: 'center',
+            marginTop: '2rem',
+            marginBottom: '0rem'
+          }}
+        >
+          Do you know a latin game that isn't included?
+        </Typography>
+        <Typography
+          variant='h6'
+          style={{
+            flexGrow: 1,
+            textAlign: 'center',
+            // marginTop: '2rem',
+            marginBottom: '3rem'
+          }}
+        >
+          Please share it{' '}
+          <Link
             href='https://discord.gg/ludus'
             color='secondary'
             style={{ textDecoration: 'none' }}
@@ -457,10 +561,16 @@ function App () {
           >
             on the discord 🙏
           </Link>
-            </Typography>
+        </Typography>
       </div>
     </ThemeProvider>
   )
+
+  function createButtonProp(boolean) {
+    return boolean
+      ? { variant: 'contained' }
+      : {}
+  }
 }
 
 export default App
